@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 interface ContainerProps {
   size?: 'small' | 'large';
+}
+
+interface NavLinkProps {
+  $isActive: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -15,22 +20,24 @@ export const Container = styled.div<ContainerProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+`;
 
-    nav {
-      a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        transition: opacity 0.2s;
+export const NavLink = styled(Link)<NavLinkProps>`
+  border-bottom: ${({ $isActive }) =>
+    $isActive ? '2px solid #FF872C' : 'none'};
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  opacity: ${({ $isActive }) => ($isActive ? '1' : '0.8')};
+  padding-bottom: 10px;
+  transition: opacity 0.2s;
 
-        & + a {
-          margin-left: 32px;
-        }
+  & + a {
+    margin-left: 32px;
+  }
 
-        &:hover {
-          opacity: 0.6;
-        }
-      }
-    }
+  &:hover {
+    opacity: 1;
   }
 `;
